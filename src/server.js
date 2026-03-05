@@ -15,13 +15,15 @@ app.get("/api/generate", async (req, res) => {
 const amount = req.query.amount || 1
 const txnId = uuidv4()
 
-const upiId = req.query.upiId ?? "deepakkumawat@nyes"
+const upiId = req.query.upiId ?? "deepakkumawat@nyes";
+const pn = req.query.pn ?? "DemoStore";
 // const upiId = req.query.amount ?? "imranibb@ybl"
 // const upiId = "9413512582@mbk"
 // const upiId = "deepakkumawat@nyes"
 
 // const upiUrl =
-const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent('DemoStore')}&am=${encodeURIComponent(amount)}&cu=INR&tr=${encodeURIComponent(txnId)}&tid=${encodeURIComponent(txnId)}&tn=${encodeURIComponent('Payment for Order ' + txnId)}`;
+const upiUrl = `upi://pay?pa=${upiId}&pn=${pn}&am=${encodeURIComponent(amount)}&cu=INR&tr=${encodeURIComponent(txnId)}&tn=${encodeURIComponent('Payment for Order ' + txnId)}`;
+// const upiUrl = `upi://pay?pa=${upiId}&pn=${pn}&am=${encodeURIComponent(amount)}&cu=INR&tr=${encodeURIComponent(txnId)}&tid=${encodeURIComponent(txnId)}&tn=${encodeURIComponent('Payment for Order ' + txnId)}`;
 const qr = await QRCode.toDataURL(upiUrl)
 
 let data = []
