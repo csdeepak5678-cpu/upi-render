@@ -10,6 +10,7 @@
 <h2>Generate UPI Payment QR</h2>
 
 <input id="amount" placeholder="Enter amount"/>
+<input id="upiID" placeholder="Enter UPI ID"/>
 
 <button onclick="createQR()">Generate QR</button>
 
@@ -20,8 +21,13 @@
 async function createQR(){
 
 const amount=document.getElementById("amount").value
+const upiID=document.getElementById("upiID").value ?? ''
+if(!amount || !upiID){
+alert("Please enter amount and UPI ID")
+return
+}
 
-const res=await fetch(`/api/generate?amount=${amount}`)
+const res=await fetch(`/api/generate?amount=${amount}&upiId=${upiID}`)
 
 const data=await res.json()
 

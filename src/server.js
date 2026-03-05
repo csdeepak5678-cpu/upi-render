@@ -12,10 +12,11 @@ const file = path.join(__dirname, "../data/payments.json")
 
 app.get("/api/generate", async (req, res) => {
 
-const amount = req.query.amount || 100
+const amount = req.query.amount || 1
 const txnId = uuidv4()
 
-const upiId = "imranibb@ybl"
+const upiId = req.query.upiId ?? "deepakkumawat@nyes"
+// const upiId = req.query.amount ?? "imranibb@ybl"
 // const upiId = "9413512582@mbk"
 // const upiId = "deepakkumawat@nyes"
 
